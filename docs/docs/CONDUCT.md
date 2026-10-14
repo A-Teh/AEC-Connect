@@ -77,5 +77,10 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
 
+## Signitures
+
+<img src="https://lh3.googleusercontent.com/d/1PF5nO6OPaMwndSc91592fDFuejESQWFV" width="150" alt="Andrew Teh Signature" />
+
+
 
 
