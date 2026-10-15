@@ -77,8 +77,9 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
 
-## Signitures
-
+## Signatures
+<p> <em>Mathew Boullier</em></p>
+<br>
 <img src="https://lh3.googleusercontent.com/d/1PF5nO6OPaMwndSc91592fDFuejESQWFV" width="150" alt="Andrew Teh Signature" />
 <img src="https://lh3.googleusercontent.com/d/1ZULCLpAdjnaNDAV0cU6HNQJUQLREGZbGYi7dAcGPUSA" width="150" alt="Pape Ndiaye Signature" />
 
