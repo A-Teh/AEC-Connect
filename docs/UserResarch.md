@@ -13,3 +13,12 @@ Observation Statement:
 Supporting Data:
 
 Team Action (if any):
+
+Observation 3: Most desired feature is "Search for tutoring by course code / subject"
+
+Observation Statement:  The greatest desire from students who use the AEC, is to have an easy method to check which classes are available
+
+Supporting Data: It is most common response to: "If the AEC offered a mobile-friendly app, what would you most want it to help you accomplish the most?", with a 71.4% response rate. 
+
+Team Action (if any): Focus attention to making this feature the focal point of the app.
+
