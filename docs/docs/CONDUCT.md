@@ -82,6 +82,7 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 <br>
 <img src="https://lh3.googleusercontent.com/d/1PF5nO6OPaMwndSc91592fDFuejESQWFV" width="150" alt="Andrew Teh Signature" />
 <img src="https://lh3.googleusercontent.com/d/1ZULCLpAdjnaNDAV0cU6HNQJUQLREGZbGYi7dAcGPUSA" width="150" alt="Pape Ndiaye Signature" />
+<img src="https://lh3.googleusercontent.com/d/1bDy1Tex9CoFIsjclnhbN56vFDBeKxd7x" width="167" alt="Lineker Sanchez Sig." />
 
 
 
