@@ -6,13 +6,13 @@ Supporting Data: The responses to the question: "Have you used the AEC drop-in s
 
 Team Action (if any): This gives us clear motivation to continue with the app development.
 
-Observation 2:
+Observation 2: A majority of students have gone to the AEC and found the subject they needed was closed
 
-Observation Statement:
+Observation Statement: Students currently have no reliable way to know whether a subject is open before they travel to the AEC. More than half of respondents have made a trip and found the subject they needed closed, which means they wasted time and did not get the help they came for.
 
-Supporting Data:
+Supporting Data: The responses to the question: "Have you ever gone to the AEC, but the subject you needed was closed?" (20 responses) had 55% respond with "Yes" (11 students) and 45% respond with "No" (9 students)
 
-Team Action (if any):
+Team Action (if any): This supports prioritizing real time subject status and notifications when a subject opens in the app, so students can check before they go.
 
 Observation 3: Most desired feature is "Search for tutoring by course code / subject"
 
