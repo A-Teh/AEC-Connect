@@ -50,3 +50,35 @@
   * **Variation B (Treatment - Combined First Screen):** The app opens straight to one screen with a segmented toggle, *"Create Account | Log In"*, above a single shared form. Tapping the toggle changes the fields and the button label in place with no page navigation. Create Account is the default tab for new installs.
     * **Mockup:** One screen with the AEC logo, a two-option toggle, URI Email and Password fields, a Confirm Password field that appears only on the Create Account tab, an inline error line, a primary button that reads "Create Account" or "Log In", an "OR" divider, and a "Sign in with URI SSO" button. A new user starts typing with 0 extra taps, and a returning user needs 1 tap on the toggle.
   * **Held constant in both variations:** Field labels, validation rules (`@uri.edu` email, 8-character password, matching passwords), error text, colors, and the SSO button, so screen structure is the only variable.
+
+
+### A/B Test Name: "Find a Tutor with Related Experience" Button vs. Auto-Shown Related Tutor Suggestions
+
+* **User Story Number:** US5 (Additional Feature - AI Tutor Matching)
+* **Metrics:**
+  * **Task Success (primary):** Share of students who land on a course page with no tutor on shift for that course and then join a queue for a tutor with related experience (`join_dropin_queue` where `is_adjacent_match = true`).
+  * **Retention:** 7-day return rate for students who reached a course page with no tutor on shift for that course, compared with the overall 7-day return rate.
+  * **Happiness:** 1 to 5 rating of "The related-experience tutor was able to help with my course", shown once after a session with a tutor matched this way. This is also a guardrail: a related-experience tutor isn't a direct match, so higher conversion doesn't count as a win if students feel worse served.
+* **Hypothesis:**
+  * Showing the top related-experience tutors directly under the *"No tutor is currently on shift for this course"* message will lead more students to join a queue than asking them to tap *"Find a Tutor with Related Experience"* first. A student who has just read that no one covers their course is close to leaving, and one extra tap before they see that help is available is a likely point of drop-off.
+  * **What Problem Are We Trying to Solve? Its Impact?**
+    * **Problem:** When no tutor on shift has a student's course (e.g., MTH 362) listed, the student assumes no help is available and leaves the AEC, or asks reception to guess who might know the material. 55% of surveyed students have already made a trip to the AEC and found the subject they needed closed.
+    * **Impact:** Tutors whose experience is in related courses (e.g., MTH 244) are often on shift and free. Showing them to students increases the number of courses the AEC can actually cover without hiring more tutors, and it turns a "subject closed" dead end into a completed session.
+* **Experiment:**
+  * **Audience:** Using Firebase Remote Config and A/B Testing, we will target 100% of logged-in students who load a course page where no tutor on shift has a direct match for that course, split 50/50 between Variation A (Control) and Variation B (Treatment). The Remote Config parameter `related_tutor_mode` (`on_tap` or `auto_show`) decides the behavior. Course pages that have a tutor on shift for that course are excluded.
+  * **Tracking (using Firebase Analytics):** Every event carries the parameters `related_tutor_mode` (`on_tap` or `auto_show`) and `course_code`.
+    * `no_direct_tutor_view`: Event fired when the *"No tutor is currently on shift for this course"* message is displayed (activation event).
+    * `related_tutors_requested`: Event fired when the AI matching service is called (Variation A: on button tap; Variation B: on page load).
+    * `related_tutors_shown`: Event fired when suggestions are displayed, with parameters `suggestion_count` and `latency_ms`.
+    * `related_tutor_selected`: Event fired when a student taps a suggested tutor, with parameters `tutor_id`, `related_course` (e.g., `"MTH_244"`), and `list_position`.
+    * `join_dropin_queue`: The existing Golden Path event, with the added parameters `tutor_id` and `is_adjacent_match` (true/false).
+    * `related_match_none`: Event fired when the *"No tutors with related experience are on shift right now"* message is displayed.
+    * `notify_me_tapped`: Event fired when a student taps *"Notify Me When Available"*.
+    * `ai_match_unavailable`: Event fired when the matching service times out after 3 seconds and the *"temporarily unavailable"* notice is displayed.
+    * Track related-tutor conversion rate: `join_dropin_queue (where is_adjacent_match = true)` / `no_direct_tutor_view`. Success rule: Variation B wins if its conversion rate is at least 15% higher (relative) than the control, the 95th percentile of `latency_ms` stays within the story's 3-second limit, and the average "able to help" rating does not drop.
+* **Variations:**
+  * **Variation A (Control - On-Tap Button):** Follows the US5 acceptance criteria as written. The course page shows the *"No tutor is currently on shift for this course"* message, with a prominent *"Find a Tutor with Related Experience"* button below it. Suggestions load only after the student taps the button.
+    * **Mockup:** MTH 362 course page with a gray info banner, *"No tutor is currently on shift for this course"*, and a full-width Navy Blue button below it, *"Find a Tutor with Related Experience"*. Tapping the button shows a loading spinner, then a list of tutors.
+  * **Variation B (Treatment - Auto-Shown Suggestions):** The same message, with the top 2 related-experience tutors loaded automatically underneath it, plus a *"See all related tutors"* link.
+    * **Mockup:** MTH 362 course page with the same gray banner, then the heading *"These tutors on shift have related experience"*, followed by two tutor cards. One reads *"Priya S. · Related Experience: MTH 244 · 1 hr 20 min left on shift"* and has a *"Join Queue"* button. Below the cards is a *"See all related tutors"* text link.
+  * **Held constant in both variations:** The AI matching service and how it ranks tutors, the information on each tutor card (name, related course, remaining shift time), the 3-second timeout, the wording for no matches and for the service being unavailable, the *"Notify Me When Available"* option, colors, and queue logic. The only variable is whether suggestions need a tap.
