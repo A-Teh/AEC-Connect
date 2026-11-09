@@ -51,6 +51,12 @@
     * **Mockup:** One screen with the AEC logo, a two-option toggle, URI Email and Password fields, a Confirm Password field that appears only on the Create Account tab, an inline error line, a primary button that reads "Create Account" or "Log In", an "OR" divider, and a "Sign in with URI SSO" button. A new user starts typing with 0 extra taps, and a returning user needs 1 tap on the toggle.
   * **Held constant in both variations:** Field labels, validation rules (`@uri.edu` email, 8-character password, matching passwords), error text, colors, and the SSO button, so screen structure is the only variable.
 
+  * **Implementation Status (updated Nov 9, completed items only):**
+    * **Remote Config parameter:** `authScreen` (String), default `separate`, variant value `combined`. Created and published in Firebase, and added in FlutterFlow (branch US 1) with the same default.
+    * **Events implemented (FlutterFlow, US 1):** `auth_screen_view` with `variant` (fires when the AccountCreation page loads) and `signup_complete` with `variant` (fires after Create Account succeeds).
+    * **Firebase experiments created:** one targeting the Android app and one targeting the Web app, each comparing `authScreen` `separate` (baseline) vs `combined`, with 100% exposure and primary goal `signup_complete`.
+
+
 
 ### A/B Test Name: "Find a Tutor with Related Experience" Button vs. Auto-Shown Related Tutor Suggestions
 
